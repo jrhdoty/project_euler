@@ -21,7 +21,7 @@ console.log(factorial(3));
 
 var latticePaths = function(dim){
   dim = dim*2;
-  return factorial(dim)/(factorial(dim/2)*factorial(dim/2)); //n choose k, n!/(k!(n-k)!)
+  return factorial(dim)/(factorial(dim/2)*factorial(dim/2));
 };
 
 console.log('latice path for 20: ', latticePaths(20));

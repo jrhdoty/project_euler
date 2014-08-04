@@ -48,19 +48,37 @@ var memoize = function(func){
   };
 };
 
+var memoizedPrime = memoize(isPrime);
+
 var checkQuadraticPrimeGenerator = function(a, b){
   //return number of primes generated 0-n
-  var prime = true;
-  var n = 0;
+  var prime = true, n=0, result;
   while(prime){
-    
+    result = n*n + n*a + b;
+    if ( memoizedPrime(result) ){
+      n+=1;
+    } else {
+      prime = false;
+    }
   }
-
+  return n-1;
 };
 
+var max = -1, max_a, max_b, result;
+
+for ( var a = -999; a <= 999; a++){
+  for ( var b = -999; b <= 999; b++ ){
+    result = checkQuadraticPrimeGenerator(a, b);
+    if ( result > max ){
+      max = result;
+      max_a = a;
+      max_b = b;
+    }
+  }
+}
 
 
-
+console.log('max product: ', max_a*max_b);
 
 
 
