@@ -9,6 +9,25 @@ There are thirteen such primes below 100: 2, 3, 5, 7, 11, 13, 17, 31, 37, 71, 73
 How many circular primes are there below one million?
 */
 
-var rotations = function(num){
+var rotate = function(arr){
+  arr.push(arr.shift());
+  return arr;
+};
+
+var allRotations = function(num){
+  var results = [];
+  results.push(num);
+  num = num.toString().split('');
+
+  for ( var i = 0; i < num.length-1; i++ ){
+    results.push(rotate(num).join('')*1);
+  }
+  return results;
+};
+
+console.log(allRotations(197));
+
+
+var primeSieve = function(max){
 
 };
