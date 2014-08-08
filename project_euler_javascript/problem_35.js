@@ -25,8 +25,6 @@ var allRotations = function(num){
   return results;
 };
 
-console.log(allRotations(197));
-
 
 var primeSieve = function(max){
   var nums = range(2, max);
@@ -34,7 +32,6 @@ var primeSieve = function(max){
 
   for (var i = 0; i < nums.length; i++){
     next = nums[i];
-    console.log('next is: ', next);
     if (next){
       counter = next+next;
       while(counter < max){
@@ -65,12 +62,27 @@ var filter = function(arr, predicate){
   return result;
 };
 
-//get all primes less than one million
+//get all primes less than one million and put them in a hash table for faster lookup
 var primes = primeSieve(1000000);
+var primeTable = {};
 for ( var i = 0; i < primes.length; i++ ){
-  
+  primeTable[primes[i]] = true;
 }
 
+//go through each prime and check if all of its rotations are prime
+var rotations, isCircular = true, results = [];
+for (var i = 0; i < primes.length; i++){
+  rotations = allRotations(primes[i]);
+  isCircular = true;
+  for ( var j = 0; j< rotations.length; j++ ){
+    if (!primeTable[rotations[j]]){
+      isCircular = false;
+    }
+  }
+  if(isCircular){results.push(primes[i]);}
+}
+
+console.log(results.length);
 
 
 
