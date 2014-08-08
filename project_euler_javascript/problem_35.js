@@ -29,5 +29,52 @@ console.log(allRotations(197));
 
 
 var primeSieve = function(max){
+  var nums = range(2, max);
+  var next, counter;
 
+  for (var i = 0; i < nums.length; i++){
+    next = nums[i];
+    console.log('next is: ', next);
+    if (next){
+      counter = next+next;
+      while(counter < max){
+
+        nums[counter-2] = null;
+        counter+=next;
+      }
+    }
+  }
+  return filter(nums, function(item){
+    return (item);
+  });
 };
+
+var range = function(min, max){
+  var result = [];
+  for ( var i = min; i < max; i++ ){
+    result.push(i);
+  }
+  return result;
+};
+
+var filter = function(arr, predicate){
+  var result = [];
+  for ( var i = 0; i < arr.length; i++ ){
+    if (predicate(arr[i])){result.push(arr[i]);}
+  }
+  return result;
+};
+
+//get all primes less than one million
+var primes = primeSieve(1000000);
+for ( var i = 0; i < primes.length; i++ ){
+  
+}
+
+
+
+
+
+
+
+
