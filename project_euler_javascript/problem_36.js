@@ -9,13 +9,9 @@ Find the sum of all numbers, less than one million, which are palindromic in bas
 (Please note that the palindromic number, in either base, may not include leading zeros.)
 */
 
-
-
 function getBaseLog(x, y) {   //The following function returns the logarithm of y with base x (ie. logx y):
     return Math.log(y) / Math.log(x);
 }
-
-console.log(getBaseLog(2, 585));
 
 var generateRepeatArray = function(val, length){
   var result = [];
@@ -24,7 +20,6 @@ var generateRepeatArray = function(val, length){
   }
   return result;
 };
-
 
 var numToBinary = function(num){
   var result = '';
@@ -41,7 +36,31 @@ var numToBinary = function(num){
   return binary;
 };
 
+var isPalindrome = function(str){
+  var start = 0; end = str.length-1;
+  while(start < end){
+    if ( str[start] !== str[end] ){
+      return false;
+    }
+    start++;
+    end--;
+  }
+  return true;
+};
 
+var results = [];
+var sum = 0;
+for (var i = 1; i < 1000000; i+=2){
+  if (isPalindrome(i.toString())){
+    if(isPalindrome(numToBinary(i).join(''))){
+      results.push(i);
+      sum += i;
+    }
+  }
+}
+
+// console.log(results);
+console.log(sum);
 
 
 
