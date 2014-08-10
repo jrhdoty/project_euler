@@ -58,9 +58,30 @@ var arrayToSet = function(arr){
   return set;
 };
 
+var roof = 1000000;
+var primeList = primeSieve(0, roof);
+var primeSet = arrayToSet(primeList);
+
+var maxSums = -1, maxPrime = -1;
+var current = 0, numSums;
+
+for ( var start = 0; start < primeList.length-1; start++ ){
+  current = primeList[start];
+  numSums = 2;
+  for ( var end = start+1; end < primeList.length; end++){
+    current += primeList[end];
+    if ( current > roof){break;}
+    if ( numSums > maxSums && primeSet[current] ){
+      maxSums = numSums;
+      maxPrime = current;
+    }
+    numSums++;
+  }
+}
 
 
-
+console.log('maxPrime is: ', maxPrime);
+console.log('maxSums is:  ', maxSums);
 
 
 
