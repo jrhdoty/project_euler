@@ -13,10 +13,61 @@ contains 21 terms, and is equal to 953.
 Which prime, below one-million, can be written as the sum of the most consecutive primes?
 */
 
-var primeSieve = function(min, max){
-
-}
+var filter = function(arr, predicate){
+  var result = [];
+  for ( var i = 0; i < arr.length; i++ ){
+    if ( predicate(arr[i])){
+      result.push(arr[i]);
+    }
+  }
+  return result;
+};
 
 var range = function(min, max){
   var result = [];
+  for ( var i = min; i < max; i++ ){
+    result.push(i);
+  }
+  return result;
 };
+
+var primeSieve = function(min, max){
+  var primes = range(2, max);
+  var multiple, current;
+  for ( var i = 0; i < primes.length; i++ ){
+    current = primes[i];
+    if ( current ){
+      multiple = current*2;
+      while ( multiple < max ){
+        primes[multiple-2] = null;
+        multiple += current;
+      }
+    }
+  }
+  return filter(primes, function(item){
+    if (item && item >= min) return true;
+    return false;
+  });
+};
+
+var arrayToSet = function(arr){
+  var set = {};
+  for ( var i = 0; i < arr.length; i++ ){
+    set[arr[i]] = true;
+  }
+  return set;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
