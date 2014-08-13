@@ -29,3 +29,42 @@ var primeFactors = function(num){
   }
   return factors;
 };
+
+var numPrimeFactors = function(num){
+  return Object.keys(primeFactors(num)).length;
+};
+
+
+//consecutive numbers with x distinct primes
+var cndp = function(numberConsecutive, numPrimes){
+  var found = false;
+  var current = 2;
+  var i;
+  while ( !found ){
+    found = true;
+    for ( i = current; i < numberConsecutive+current; i++ ){
+      if ( numPrimeFactors(i) !== numPrimes ){
+        found = false;
+        break;
+      }
+    }
+    if ( found ){
+      var result = [];
+      for ( i = current; i < numberConsecutive+current; i++){
+        result.push(i);
+      }
+      return result;
+    }
+    current++;
+  }
+};
+
+console.log(cndp(4, 4));
+
+
+
+
+
+
+
+
