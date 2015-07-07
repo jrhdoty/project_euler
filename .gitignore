@@ -1,0 +1,6 @@
+#ignore compiled rust files
+/project_euler_rust/*
+!/project_euler_rust/*.rs
+**/*.swp
+.gitignore.swp
+.DS_Store
